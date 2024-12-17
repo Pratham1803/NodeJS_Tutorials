@@ -1,0 +1,52 @@
+- Initilize the project: npm init
+
+- Run The Project:
+    - node index.js [Run this file only]
+    - in package.json: Put this:
+        "scripts": {
+            "start": "node index.js"
+        }
+        and than fire "npm run start". it will run the project. [Production way]
+
+- Stop the server: Ctrl + c
+
+- Server Listens the client request and send response.
+    - use app.listen() to listen the requests.
+
+1. Install Express [web framework]:  npm install express
+2. Import package:
+    - const express = require('express');
+    - import express from "express";
+
+3. make app variable :
+    const app = express()
+
+4. using app we can send request to the server:
+    types of requests = get, post, put, delete
+
+5. send get request:
+    app.get('/',(req,res) => {
+        res.send("Hello World");
+    })
+    -   '/' => URL. Example: '/login', '/dashboard'
+    - (req,res) => request and response objects.
+    - res.send() => send a text response to the client.
+
+6. Listen the request:
+    app.listen(port,() => {
+        console.log('Example app listning on Port = ${port}');
+    })
+    - Listen the request on given port.
+
+7. In production, give the details that should hide to other users like, port number in .env file.
+    - instal env: npm i dotenv
+    - create .env file
+    - set port number: PORT : 3000
+
+8. send json response:
+    - res.json(data);
+
+9. to push on github:
+    - ignore files you don't want to push on github
+    - create file: .gitignore
+    - put the files and folders you do not want to push on github
