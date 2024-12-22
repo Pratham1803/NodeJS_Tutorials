@@ -21,3 +21,7 @@
     - 5. routes -> set users url (example: /login, /register)
     - 6. utils -> it is utility for provide code files that will use multiple times in project. like, to upload file in profile or in any other place, send multiple types of mails etc.
     
+-> install prettier package, so in team it make formatting same for all developers
+    - npm i -D prettier
+    - create file, ".prettierrc" to provide configuration of formatting.
+    - create file ".prettierignore" to ignore the files.
