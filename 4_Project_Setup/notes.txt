@@ -1,0 +1,23 @@
+-> in github we can not push the empty folders:
+    - for that, use '.gitkeep' file in empty folders to push that folder.
+
+-> use .gitignor generator to generate ignored files list for github repositories
+
+-> use public folder, to put the users files temporarily on the server in temp folder, than upload those file to third party storage and collect the url and stor in database to access the file.
+
+-> provide all the source code in src folder, to make project more organized
+
+-> when we change some file than we have stop and start the server to see the changes,
+    - use nodemon dev depndencies [Those depndencies that we use at development time not in production ], that automatically restart the server.
+    - npm i -D nodemon
+    - in package.json, scripts, set the "dev" command with "nodemon src/index.js" command
+
+-> in project setup make folders in src folder:
+    - files: app.js, index.js, constants.js
+    - 1. contollers -> has major functionalities
+    - 2. db -> database connection logic
+    - 3. middlewares -> to provide validation code, that track the request of users
+    - 4. models -> to set all models
+    - 5. routes -> set users url (example: /login, /register)
+    - 6. utils -> it is utility for provide code files that will use multiple times in project. like, to upload file in profile or in any other place, send multiple types of mails etc.
+    

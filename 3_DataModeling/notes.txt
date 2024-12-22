@@ -1,0 +1,15 @@
+- use mongoose
+- moon modeler and eraser.io is tool for data modeling
+- define models using mongoose where you have set the schema
+    - example:
+        const userSchema = new mongoose.Schema({})
+
+- export the schema:
+    - export const User = mongoose.model("User",userSchema)
+
+- set the reference between the schema:
+    type: mongoose.Schema.Type.ObjectId,
+    ref: "User"
+
+- set array type in model:
+    subTodos: [{}]
