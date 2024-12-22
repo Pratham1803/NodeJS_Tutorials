@@ -1,3 +1,4 @@
+** Project Setup:
 -> in github we can not push the empty folders:
     - for that, use '.gitkeep' file in empty folders to push that folder.
 
@@ -25,3 +26,16 @@
     - npm i -D prettier
     - create file, ".prettierrc" to provide configuration of formatting.
     - create file ".prettierignore" to ignore the files.
+
+------------------------------------------------------------------------------------------------
+
+** Connect to Mongo Db:
+-> Create project in Mongo Db Atlas.
+-> in .env file, set port and connection string
+-> IMP : Must Wrap all program in Try and catch
+-> IMP : Must use async await.
+-> Example: const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URL}/${DB_NAME}`);
+-> collect host name: connectionInstance.connection.host
+-> Two methods to connect to Mongo:
+    1. put all code in index.js file
+    2. put code in db/index.js and export the connection instance
