@@ -5,9 +5,17 @@
 import dotenv from "dotenv";
 import connectDb from "./db/index.js";
 
-dotenv.config({path:'./env'})
+dotenv.config({ path: './env' })
 
 connectDb()
+    .then(() => {
+        app.listen(process.env.PORT || 3000, () => {
+            console.log(`Connecting to port ${process.env.PORT}`);
+        })
+    })
+    .catch((err) => {
+        console.log(`Failed to connect to port ${process.env.PORT}`);
+    })
 
 /*
 1. Direct connect to database from index file
