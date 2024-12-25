@@ -77,3 +77,61 @@
     4. next - use in middlewares to give flag to next middleware that it's work is finish now you can do your's.
 
 -> set the stucture of the send error and response to the client-side as in same formate, for that defin files like 'ApiError' and 'ApiResponse' in utils folder that make the same structure for sending responses to the server.
+
+---------------------------------------------------------------------------------------------------
+
+** User and video model with hooks and AWT:
+
+-> index filed in model is used when the field is more searchable in datbase like username.
+-> const userSchema = new Schema({
+        username: {
+            type: String, // define the type of the user
+            required: true, // define that user entry is required
+            unique: true, // define that user entry is unique
+            lowercase: true, // define that user entry is lower case
+            trim: true, // trim the data
+            index: true
+        }
+    });    
+
+-> install aggregation package:
+    - npm i mongoose-aggregate-paginate-v2
+
+-> bcrypt and JWT packages:
+    1. bcrypt:
+        - npm i bcrypt
+        - used to hash the password
+    2. JWT (Json Web Token):
+        - npm i jsonwebtoken
+        - used to generate the tokens and send to the client.
+        - it is bearer token
+
+-> () {} this function declaration can not access the data member out side the body
+
+-> 'Pre' middleware: 
+    - mongoose has it's own middleware like: 'pre' that will run before the data is save.
+    - example: before saving user data, encrypt the password
+    - types: when you want to hook into the middleware:
+        1. validate, 2. save, 3.remove, 4.updateOne, 5.deleteOne 6. init
+    - do not use callback like this: () {} because we can not access the Schema. In place od that use:
+        async function(next) {}
+        - this can take some time because it works with database so use async.
+        - next is middleware to pass the flag.
+    - this pre hook will run each time when you modify the data, but you want to run it when some particular data is modified.
+        - put condition to check your desired field is edited or not:
+            if(!this.isModified("password")) return next(); // check that password is modified, if not than return next
+
+    Example:
+        userSchema.pre("save", function(next){
+            if(!this.isModified("password")) return next();
+            this.password = bcrypt.hash(this.password,10);
+            next();
+        })
+
+-> Custom Methods of Schema:
+    - userSchema.methods.isPasswordCorrect = async function (password) {
+        return await bcrypt.compare(password, this.password);
+    };
+
+-> use of JWT Token:
+    - 
