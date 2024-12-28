@@ -135,3 +135,16 @@
 
 -> use of JWT Token:
     - 
+
+---------------------------------------------------------------------------------------------------
+
+** How to upload file in backend
+
+-> Cloudinary site, free for file upload.
+-> install packages: 
+    1. cloudinary : npm i cloudinary
+    2. multer : npm i multer
+
+-> import "fs" -> file system inbuilt package of node js for file Handling
+
+-> multer: Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files
