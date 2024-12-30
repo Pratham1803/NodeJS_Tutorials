@@ -148,3 +148,13 @@
 -> import "fs" -> file system inbuilt package of node js for file Handling
 
 -> multer: Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files
+
+---------------------------------------------------------------------------------------------------
+
+** Router, Controller and Debugging
+
+-> in routes folder, put all the routes for when on which url, run which controller.
+-> create router: const router = Router();
+-> all router should written in app.js
+-> because we are sepratting routes, so do not use 'app.get()' in place user router like: app.use(routerName)
+-> create route: router.route('/register' ).post(registerUser)
