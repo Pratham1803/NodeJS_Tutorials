@@ -158,3 +158,36 @@
 -> all router should written in app.js
 -> because we are sepratting routes, so do not use 'app.get()' in place user router like: app.use(routerName)
 -> create route: router.route('/register' ).post(registerUser)
+
+---------------------------------------------------------------------------------------------------
+
+** Logic Building
+
+-> some() : method of List, to check some condition and return boolean value
+    - [username, password, fullName, email].some((field) => field?.trim() === '')
+    - checking that all fields are not empty
+    - ((field) => field?.trim() === "") this method will return true or false
+
+-> model build with mongoose is behave like a monog db query:
+    User.findOne({
+        $or: [{ username }, { email }],
+    });
+
+-> add middleware: here, post method has upload file middleware and then registerUser method
+    router.route('/register').post(
+        upload.fields([ // more than one file field
+            { // first file field
+                name: 'avatar', // expected name from frontend 
+                maxCount: 1 // number of uploaded files
+            },
+            { // second file field
+                name: 'coverImage', // expected name from frontend
+                maxCount: 1 // number of uploaded files
+            }
+        ]) ,
+        registerUser // method to call
+    );
+
+-> collect fields from request: const { fullName, email, username, password } = req.body;
+
+-> 

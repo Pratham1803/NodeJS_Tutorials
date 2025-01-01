@@ -18,7 +18,9 @@ const uploadOnCloudinary = async (localFilePath) => {
 
     return response.secure_url;
   } catch (err) {
-    fs.unlinkSync(localFilePath);
+    fs.unlinkSync(localFilePath); // remove the locally save file
     return null;
   }
 };
+
+export { uploadOnCloudinary };
