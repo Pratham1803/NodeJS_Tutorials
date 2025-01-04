@@ -3,6 +3,7 @@ import { ApiError } from '../utils/ApiError.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 import { User } from '../models/user.model.js';
 import { uploadOnCloudinary } from '../utils/cloudinary.js';
+import { log } from 'console';
 
 const registerUser = asyncHandler(async (req, res) => {
     // Collect daya from request
@@ -18,8 +19,11 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, 'All Fields are required.');
     }
 
+    console.log(req.files);
+    // console.log(req.body);
+
     // check that given username and email id is exists or not in database
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or: [{ username }, { email }],
     });
 
@@ -29,13 +33,24 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     const avatarLocalPath = req.files?.avatar[0]?.path; // collect avatar path
-    const coverImageLocalPath = req.files?.converImage[0]?.path; // collect coverImage Path
+    // const coverImageLocalPath = req.files?.coverImage[0]?.path; // collect coverImage Path
+
+    let coverImageLocalPath;
+    if (
+        req.files &&
+        Array.isArray(req.files.coverImage) &&
+        req.files.coverImage.length > 0
+    ) {
+        coverImageLocalPath = req.files.coverImage[0].path; // collect coverImage Path
+    }
 
     // throw error when local path of avatar image is not exists
     if (!avatarLocalPath) throw new ApiError(400, 'Avatar is required.');
     // if (!coverImageLocalPath) throw new ApiError(400, 'Cover image is required.');
 
     const avatar = await uploadOnCloudinary(avatarLocalPath); // upload avatar image on clodinary
+    console.log("Avatar uploaded: "+avatar);
+    
     const coverImage = await uploadOnCloudinary(coverImageLocalPath); // upload coverImage image on clodinary
 
     if (!avatar)
@@ -45,10 +60,11 @@ const registerUser = asyncHandler(async (req, res) => {
     //   throw new ApiError(500, 'Error uploading cover image to cloudinary.');
 
     // create new user with given data and save in database
+
     const user = await User.create({
-        fullName,
+        fullname: fullName,
         avatar: avatar.url,
-        coverImage: coverImage?.url || '',
+        coverImage: coverImage?.url || "",
         email,
         password,
         username: username.toLowerCase(),

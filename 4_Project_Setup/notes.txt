@@ -190,4 +190,19 @@
 
 -> collect fields from request: const { fullName, email, username, password } = req.body;
 
--> 
+---------------------------------------------------------------------------------------------------
+
+** How to use Postman:
+
+-> in Body, we have to set the data fields in [json, form data, etc]  to set the data in request
+-> to set file, use form data.
+
+-> Remove File:
+    fs.unlinkSync(localFilePath); // remove synchronously
+
+-> Create Collection and put all your requests in that for testing.
+-> also, create folders like: user where all the requests are related to users.
+-> the base url is static for all the request so set it in the environment variable of postman.
+    - go to environment and add variable.
+    - in env variable, set the collection you have created to link both.
+    - put {{variable_name}} in place of url.
