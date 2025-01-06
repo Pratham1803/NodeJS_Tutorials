@@ -206,3 +206,32 @@
     - go to environment and add variable.
     - in env variable, set the collection you have created to link both.
     - put {{variable_name}} in place of url.
+
+---------------------------------------------------------------------------------------------------
+
+** Access Refresh Token, middleware and cookies
+
+- Access Token are short Lived and Refresh tokens are long Lived
+    - Access Token: user can access resourses of site using access token, unitl it expires.
+        - Example: user want to upload file, but login session is expires so they have to login again to get new access token.        
+    - Refresh Token: It saved in Database and also in user site cookie.
+        - it by pass the login by, matching refresh token stored in cookie and in data base and if both are same then it generates new access token.
+
+- Cookie:
+    - httpOnly and secure true, cookies can not be modified by the user. it only modif from server.
+    - with response set the cookie using ".cookie" and pass, key, value and options.
+        - return res.status(200).
+            .cookie("accessToken", accessToken, options)
+
+- Access token is not set in cookie in Android application, so send it in json format.
+    - for sending to request to server send access token in header with "Bearer {accessToken}" format
+    - we are storing some data in Access Token using JWT. (like, id of user, name etc.)
+    - in route, when handeling request, pass the function name to handel the middleware.
+        example, router.route('/logout').post(verifyJWT ,logOutUser)
+
+- Try..Catch Short cut: select block of code and direct write try catch.
+
+- findByIdAndUpdate() : find the id and update it.
+    - $set : set the properties you want to update.
+
+- if response is unused then write "_" in place of res.
