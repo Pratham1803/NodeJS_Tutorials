@@ -235,3 +235,11 @@
     - $set : set the properties you want to update.
 
 - if response is unused then write "_" in place of res.
+
+-----------------------------------------------------------------------
+
+** Access Token and Refresh Token
+
+- Access token is short term, that will be expired after some time.
+- using refresh token, that is stored in database, we can by pass the login module and directly refresh the access token to login user automatically.
+- refresh token is stored in cookies of client, we have to match that cookie with stored token in our database, if both matched then refresh the access token.
