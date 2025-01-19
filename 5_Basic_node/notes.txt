@@ -1,0 +1,21 @@
+-> initilizie project: npm init
+
+-> install package : npm install 'package_name' || npm i 'package_name'
+
+-> type as 'module' in package,json: load packages asynchronously
+    - commonjs: default, but load package synchronously
+
+    - use import keyword to import package in module type, it not support require.
+
+-> type of export: 
+    1. default: export default d = 40;
+    2. named export: export const a = 10;
+
+-> import:
+    - import {a} from './myModule.js'; // used to import named exports
+    - import a from './myModule.js'; // used to import default export
+
+-> __dirname: returns directory name.
+-> __filename: return file name.
+
+-> 'fs' module: use for file handeling
