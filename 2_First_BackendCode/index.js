@@ -1,8 +1,9 @@
-const express = require('express'); // object of express module
-require('dotenv').config(); // object of
-const app = express();
-const port = process.env.PORT || 3000;
+const express = require('express'); // import express module
+require('dotenv').config(); // import dotenv module
+const app = express(); // create express app object
+const port = process.env.PORT || 3000; // set port number from .env file or 3000
 
+// Data for GitHub API response
 const data = {
     "login": "Pratham1803",
     "id": 114798779,
@@ -39,22 +40,23 @@ const data = {
     "updated_at": "2024-12-16T23:20:12Z"
 }
 
-app.get('/', (req, res) => {
-    res.send("Hello World");
+// Routes for different paths
+app.get('/', (req, res) => { // get request for root path
+    res.send("Hello World"); // send response to client
 })
 
-app.get('/youtube', (req, res) => {
-    res.send("<h1>Here is The YouTube</h1>")
+app.get('/youtube', (req, res) => { // get request for /youtube path
+    res.send("<h1>Here is The YouTube</h1>") // send response to client with HTML content
 })
 
-app.get('/google', (req, res) => {
-    res.send('<a href="https://www.google.com/">Google</a>')
+app.get('/google', (req, res) => { // get request for /google path
+    res.send('<a href="https://www.google.com/">Google</a>') // send response to client with anchor tag
 })
 
-app.get('/github', (req, res) => {
-    res.json(data);
+app.get('/github', (req, res) => { // get request for /github path
+    res.json(data); // send response to client in JSON format
 })
 
-app.listen(port, () => {
-    console.log(`Example app listning on Port = ${port}`);
+app.listen(port, () => { // start server on port number
+    console.log(`Example app listning on Port = ${port}`); // print message on console 
 })

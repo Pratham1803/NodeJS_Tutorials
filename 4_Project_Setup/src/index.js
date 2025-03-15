@@ -2,20 +2,22 @@
 // import mongoose from "mongoose";
 // import { DB_NAME } from "./constants.js";
 // import express from "express";
-import dotenv from 'dotenv';
-import connectDb from './db/index.js';
-import { app } from './app.js';
+import dotenv from 'dotenv'; // Import dotenv package
+import connectDb from './db/index.js'; // Import connectDb function from db/index.js
+import { app } from './app.js'; // Import app from app.js file
 
+// Load environment variables from .env file
 dotenv.config({ path: './env' });
 
-connectDb()
-  .then(() => {
-    app.listen(process.env.PORT || 3000, () => {
-      console.log(`Connected to port ${process.env.PORT}`);
+// Connect to the database and start the server
+connectDb() // Call connectDb function to connect to the database  and start the server
+  .then(() => { // If the connection is successful, then start the server
+    app.listen(process.env.PORT || 3000, () => { // Start the server
+      console.log(`Connected to port ${process.env.PORT}`); // Log a message to the console
     });
   })
-  .catch((err) => {
-    console.log(
+  .catch((err) => { // If the connection is unsuccessful, then log an error message to the console
+    console.log( 
       `Failed to connect to port ${process.env.PORT} with error ${err.message}`
     );
   });

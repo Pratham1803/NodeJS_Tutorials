@@ -1,1 +1,14 @@
 -> express: nodeJS framework for web development backend.
+    - npm i express
+
+-> slug: 
+    -   app.get('/blog/:slug', (req, res) => {
+            res.send(`Blog post ${req.params.slug}`)
+        })
+    - :slug :- collect text from url
+        - ex. /blog/python than, :slug = python
+    - read slug:  req.params.slug
+
+-> make public folder: app.use(express.static('public'))
+
+-> use middleware: app.use()
